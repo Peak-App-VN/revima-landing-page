@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terms of Service — Revima</title>
+<style>
+  :root{
+    --bg:#0b0d0f; --surface:#121518; --surface-2:#171b1f;
+    --fg:#eaf0f2; --muted:#8b969d; --border:rgba(255,255,255,0.08);
+    --accent:#8FECFF; --accent-dim:rgba(143,236,255,0.10); --accent-line:rgba(143,236,255,0.30);
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,monospace;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font:16px/1.65 var(--font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  code{font:0.88em var(--mono);background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:.08em .4em;color:var(--accent)}
+
+  .bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    padding:14px clamp(20px,5vw,48px);background:rgba(11,13,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em;color:var(--fg)}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px 2px var(--accent-line)}
+  .bar-right{display:flex;align-items:center;gap:14px}
+  .lang{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:var(--surface)}
+  .lang button{appearance:none;border:0;background:transparent;color:var(--muted);font:600 12px/1 var(--font);letter-spacing:.04em;padding:7px 13px;cursor:pointer;transition:color .15s}
+  .lang button[aria-pressed="true"]{background:var(--accent-dim);color:var(--accent)}
+  .lang button:hover{color:var(--fg)}
+  .back{color:var(--muted);font-size:13px;letter-spacing:.01em}
+  .back:hover{color:var(--fg);text-decoration:none}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,48px);display:grid;grid-template-columns:1fr;gap:0}
+  @media(min-width:980px){.wrap{grid-template-columns:230px minmax(0,var(--maxw));gap:56px;justify-content:center}}
+
+  .hero{grid-column:1/-1;padding:clamp(48px,8vw,90px) 0 28px;border-bottom:1px solid var(--border);margin-bottom:40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:auto -30% -60% auto;width:480px;height:300px;
+    background:radial-gradient(60% 60% at 70% 30%,var(--accent-dim),transparent 70%);pointer-events:none;filter:blur(8px)}
+  .eyebrow{font:600 12px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  h1{font-size:clamp(34px,6vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:600}
+  .updated{margin-top:18px;color:var(--muted);font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .updated .pill{font:600 11px/1 var(--mono);letter-spacing:.08em;color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:999px;padding:5px 11px}
+
+  .toc{display:none}
+  @media(min-width:980px){
+    .toc{display:block;align-self:start;position:sticky;top:90px;padding-top:4px}
+    .toc-title{font:600 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    .toc ol{list-style:none;display:flex;flex-direction:column;gap:2px}
+    .toc a{display:block;color:var(--muted);font-size:13.5px;line-height:1.35;padding:6px 12px;border-left:2px solid transparent;border-radius:0 6px 6px 0;transition:.15s}
+    .toc a:hover{color:var(--fg);background:var(--surface)}
+    .toc a.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-dim)}
+  }
+
+  main{padding-bottom:80px;min-width:0}
+  section.sec{padding:30px 0;border-top:1px solid var(--border)}
+  section.sec:first-of-type{border-top:0;padding-top:6px}
+  .sec h2{font-size:clamp(20px,3vw,24px);letter-spacing:-.015em;font-weight:600;margin-bottom:16px;display:flex;gap:12px;align-items:baseline;scroll-margin-top:84px}
+  .sec h2 .n{font:600 13px/1 var(--mono);color:var(--accent);flex:none;padding-top:3px}
+  .sec h3{font-size:16px;font-weight:600;margin:22px 0 8px;color:#dde5e8}
+  .sec p{color:#bcc6cb;margin:0 0 14px}
+  .sec p:last-child{margin-bottom:0}
+  .sec ul{list-style:none;margin:4px 0 14px;display:flex;flex-direction:column;gap:9px}
+  .sec ul li{position:relative;padding-left:22px;color:#bcc6cb}
+  .sec ul li::before{content:"";position:absolute;left:4px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-line)}
+  .sec ul li strong{color:#e7eef1;font-weight:600}
+  .legal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;color:#aeb8bd;font-size:13.5px;line-height:1.7;letter-spacing:.03em;margin:6px 0 14px}
+  .contact-card{margin-top:18px;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--border);border-radius:14px;padding:22px 24px}
+  .contact-card .lbl{font:600 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .contact-card .who{font-weight:600;font-size:17px}
+  .contact-card a{font-size:15px}
+
+  footer{border-top:1px solid var(--border);padding:34px clamp(20px,5vw,48px) 60px;color:var(--muted);font-size:13.5px}
+  .foot-in{max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
+  .foot-links{display:flex;gap:22px}
+  .foot-links a{color:var(--muted)}.foot-links a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="index.html"><span class="dot"></span><b>Revima</b></a>
+    <div class="bar-right">
+      <a class="back" href="index.html" data-i18n="back">← Legal</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="vi" aria-pressed="false">VI</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow" data-i18n="eyebrow">Terms</div>
+      <h1 data-i18n="title">Terms of Service</h1>
+      <div class="updated">
+        <span class="pill" data-i18n="updatedPill">UPDATED</span>
+        <span data-i18n="updatedDate">June 30, 2026</span>
+      </div>
+    </div>
+
+    <nav class="toc" aria-label="Contents">
+      <div class="toc-title" data-i18n="onThisPage">On this page</div>
+      <ol id="toc"></ol>
+    </nav>
+
+    <main id="content"></main>
+  </div>
+
+  <footer>
+    <div class="foot-in">
+      <span>© 2026 Revima · <span data-i18n="footTag">Revive your history.</span></span>
+      <div class="foot-links">
+        <a href="index.html" data-i18n="fLegal">Legal center</a>
+        <a href="privacy.html" data-i18n="fPrivacy">Privacy</a>
+        <a href="contact.html" data-i18n="fContact">Contact</a>
+        <a href="mailto:peakapp.general@gmail.com">peakapp.general@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+const UI = {
+  en:{back:"← Legal", eyebrow:"Terms", title:"Terms of Service", updatedPill:"UPDATED",
+      updatedDate:"June 30, 2026", onThisPage:"On this page", footTag:"Revive your history.",
+      fLegal:"Legal center", fPrivacy:"Privacy", fContact:"Contact", htmlLang:"en"},
+  vi:{back:"← Pháp lý", eyebrow:"Điều khoản", title:"Điều khoản Dịch vụ", updatedPill:"CẬP NHẬT",
+      updatedDate:"30 tháng 6, 2026", onThisPage:"Mục lục", footTag:"Hồi sinh ký ức của bạn.",
+      fLegal:"Trung tâm pháp lý", fPrivacy:"Bảo mật", fContact:"Liên hệ", htmlLang:"vi"}
+};
+
+const SECTIONS = [
+  {id:"intro", en:{t:"Overview", b:[
+    {p:'These Terms of Service ("Terms") govern your use of the **Revima** mobile application (the "App") operated by the Revima team ("Revima", "we", "us", or "our"). Revima is an AI-powered photo tool that restores, colorizes, upscales, and enhances photos.'},
+    {p:"By downloading, accessing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App."}
+  ]}, vi:{t:"Tổng quan", b:[
+    {p:'Điều khoản Dịch vụ này ("Điều khoản") điều chỉnh việc bạn dùng ứng dụng di động **Revima** ("Ứng dụng") do đội ngũ Revima vận hành ("Revima", "chúng tôi"). Revima là công cụ ảnh dùng AI để phục chế, tô màu, upscale và nâng cao ảnh.'},
+    {p:"Bằng việc tải, truy cập hoặc dùng Ứng dụng, bạn đồng ý bị ràng buộc bởi các Điều khoản này. Nếu không đồng ý, đừng dùng Ứng dụng."}
+  ]}},
+
+  {id:"eligibility", n:1, en:{t:"Eligibility", b:[
+    {p:"You must be at least 13 years old (or the minimum age of digital consent in your country) to use the App. By using Revima, you confirm that you meet this requirement and have the legal capacity to accept these Terms."}
+  ]}, vi:{t:"Điều kiện sử dụng", b:[
+    {p:"Bạn phải đủ ít nhất 13 tuổi (hoặc độ tuổi đồng ý số tối thiểu ở quốc gia của bạn) để dùng Ứng dụng. Khi dùng Revima, bạn xác nhận đáp ứng yêu cầu này và có năng lực pháp lý để chấp nhận các Điều khoản này."}
+  ]}},
+
+  {id:"service", n:2, en:{t:"The Service", b:[
+    {p:"Revima lets you upload a photo and use AI features to:"},
+    {ul:["**Restore** — improve faces, remove blur, and recover detail.",
+         "**Colorize** — add color to black-and-white photos.",
+         "**Upscale** — increase resolution and sharpness to bring low-res photos to life.",
+         "**Enhance** — recreate and improve damaged photos."]},
+    {p:"Processed results are stored so they appear in your **History**, and you can download them to your device. The App uses an **anonymous session** — no account registration is required."},
+    {p:"We may add, change, or remove features at any time. Some features may have usage limits or may be temporarily disabled."}
+  ]}, vi:{t:"Dịch vụ", b:[
+    {p:"Revima cho phép bạn tải lên một bức ảnh và dùng các tính năng AI để:"},
+    {ul:["**Phục chế** — cải thiện khuôn mặt, xóa mờ và khôi phục chi tiết.",
+         "**Tô màu** — thêm màu cho ảnh đen trắng.",
+         "**Upscale** — tăng độ phân giải và độ sắc nét để hồi sinh ảnh độ phân giải thấp.",
+         "**Nâng cao** — tái tạo và cải thiện ảnh bị hư hỏng."]},
+    {p:"Kết quả xử lý được lưu để xuất hiện trong **Lịch sử** của bạn, và bạn có thể tải về thiết bị. Ứng dụng dùng **phiên ẩn danh** — không cần đăng ký tài khoản."},
+    {p:"Chúng tôi có thể thêm, thay đổi hoặc gỡ bỏ tính năng bất cứ lúc nào. Một số tính năng có thể có giới hạn sử dụng hoặc bị tạm tắt."}
+  ]}},
+
+  {id:"content", n:3, en:{t:"Your Content and Responsibilities", b:[
+    {h3:"3.1 Ownership"},
+    {p:"You retain ownership of the photos you upload and of the results generated from them. We do not claim ownership of your content."},
+    {h3:"3.2 License to Operate the Service"},
+    {p:"You grant us a limited, non-exclusive license to upload, store, process, and transmit your photos **solely to provide the features you request** (such as generating a result, showing your History, and enabling downloads). We do not use your photos for advertising or to train models."},
+    {h3:"3.3 Your Warranties"},
+    {p:"By uploading a photo, you represent and warrant that:"},
+    {ul:["You own the photo or have all necessary rights and permissions to upload and edit it.",
+         "Your use of the photo does not infringe any third party's intellectual property, privacy, or other rights.",
+         "The content does not violate any applicable law."]},
+    {p:"You are solely responsible for the content you upload and for how you use the results."}
+  ]}, vi:{t:"Nội dung và trách nhiệm của bạn", b:[
+    {h3:"3.1 Quyền sở hữu"},
+    {p:"Bạn giữ quyền sở hữu đối với ảnh bạn tải lên và kết quả tạo ra từ chúng. Chúng tôi không tuyên bố sở hữu nội dung của bạn."},
+    {h3:"3.2 Giấy phép để vận hành dịch vụ"},
+    {p:"Bạn cấp cho chúng tôi giấy phép giới hạn, không độc quyền để tải lên, lưu trữ, xử lý và truyền ảnh của bạn **chỉ nhằm cung cấp tính năng bạn yêu cầu** (như tạo kết quả, hiển thị Lịch sử và cho phép tải về). Chúng tôi không dùng ảnh của bạn cho quảng cáo hay để huấn luyện mô hình."},
+    {h3:"3.3 Cam đoan của bạn"},
+    {p:"Bằng việc tải lên một bức ảnh, bạn tuyên bố và cam đoan rằng:"},
+    {ul:["Bạn sở hữu bức ảnh hoặc có mọi quyền và sự cho phép cần thiết để tải lên và chỉnh sửa nó.",
+         "Việc bạn dùng ảnh không xâm phạm quyền sở hữu trí tuệ, quyền riêng tư hay quyền khác của bất kỳ bên thứ ba nào.",
+         "Nội dung không vi phạm bất kỳ luật hiện hành nào."]},
+    {p:"Bạn hoàn toàn chịu trách nhiệm về nội dung mình tải lên và cách mình sử dụng kết quả."}
+  ]}},
+
+  {id:"acceptable", n:4, en:{t:"Acceptable Use", b:[
+    {p:"You agree **not** to use the App to:"},
+    {ul:["Upload or generate content that is illegal, hateful, harassing, sexually exploitative, or that depicts minors inappropriately.",
+         "Upload images of other people without their consent where consent is required.",
+         'Create misleading, deceptive, or harmful "deepfake" content, or impersonate others.',
+         "Infringe intellectual property, privacy, or publicity rights.",
+         "Attempt to reverse engineer, decompile, scrape, overload, disrupt, or gain unauthorized access to the App or our systems.",
+         "Circumvent usage limits, security measures, or abuse-prevention controls (including by tampering with your device identifier).",
+         "Use the App to build or train a competing product or service."]},
+    {p:"We may suspend or terminate access for any use that violates these Terms."}
+  ]}, vi:{t:"Sử dụng được chấp nhận", b:[
+    {p:"Bạn đồng ý **không** dùng Ứng dụng để:"},
+    {ul:["Tải lên hoặc tạo nội dung bất hợp pháp, thù ghét, quấy rối, bóc lột tình dục, hoặc mô tả trẻ vị thành niên một cách không phù hợp.",
+         "Tải lên ảnh của người khác mà không có sự đồng ý của họ khi sự đồng ý là bắt buộc.",
+         'Tạo nội dung "deepfake" gây hiểu lầm, lừa dối hoặc gây hại, hoặc mạo danh người khác.',
+         "Xâm phạm quyền sở hữu trí tuệ, quyền riêng tư hoặc quyền hình ảnh.",
+         "Tìm cách dịch ngược, phân rã, thu thập dữ liệu, làm quá tải, gây gián đoạn hoặc truy cập trái phép vào Ứng dụng hay hệ thống của chúng tôi.",
+         "Vượt qua giới hạn sử dụng, biện pháp bảo mật hoặc kiểm soát chống lạm dụng (kể cả bằng cách can thiệp vào mã định danh thiết bị của bạn).",
+         "Dùng Ứng dụng để xây dựng hoặc huấn luyện một sản phẩm hay dịch vụ cạnh tranh."]},
+    {p:"Chúng tôi có thể tạm ngưng hoặc chấm dứt quyền truy cập với bất kỳ hành vi nào vi phạm các Điều khoản này."}
+  ]}},
+
+  {id:"reporting", n:5, en:{t:"Reporting", b:[
+    {p:"The App lets you report results that you believe are inappropriate, low quality, or otherwise problematic. We review reports to maintain the safety and quality of the service, but we do not guarantee any particular outcome or response time."}
+  ]}, vi:{t:"Báo cáo", b:[
+    {p:"Ứng dụng cho phép bạn báo cáo kết quả mà bạn cho là không phù hợp, chất lượng thấp hoặc có vấn đề khác. Chúng tôi xem xét báo cáo để duy trì an toàn và chất lượng dịch vụ, nhưng không đảm bảo bất kỳ kết quả cụ thể hay thời gian phản hồi nào."}
+  ]}},
+
+  {id:"airesults", n:6, en:{t:"AI-Generated Results", b:[
+    {p:"AI processing is inherently imperfect. Results may contain inaccuracies, artifacts, or unexpected changes, and outcomes may vary between photos. Revima is provided as a creative and restorative tool — **we do not guarantee** that a result will be accurate, lifelike, or suitable for any particular purpose. You are responsible for reviewing results before relying on or sharing them."}
+  ]}, vi:{t:"Kết quả do AI tạo", b:[
+    {p:"Xử lý bằng AI vốn không hoàn hảo. Kết quả có thể chứa sai sót, nhiễu (artifact) hoặc thay đổi ngoài dự kiến, và kết quả có thể khác nhau giữa các ảnh. Revima được cung cấp như một công cụ sáng tạo và phục chế — **chúng tôi không đảm bảo** kết quả sẽ chính xác, sống động hay phù hợp cho bất kỳ mục đích cụ thể nào. Bạn có trách nhiệm xem xét kết quả trước khi dựa vào hoặc chia sẻ chúng."}
+  ]}},
+
+  {id:"limits", n:7, en:{t:"Generation Limits and Availability", b:[
+    {p:"We may apply limits on the number or frequency of generations, and we may throttle, queue, or disable generation features to maintain service quality and prevent abuse. We do not guarantee that the App will be available without interruption or error."}
+  ]}, vi:{t:"Giới hạn tạo và tính khả dụng", b:[
+    {p:"Chúng tôi có thể áp dụng giới hạn về số lượng hoặc tần suất tạo, và có thể điều tiết, xếp hàng đợi hoặc tắt tính năng tạo để duy trì chất lượng dịch vụ và ngăn lạm dụng. Chúng tôi không đảm bảo Ứng dụng luôn khả dụng mà không bị gián đoạn hay lỗi."}
+  ]}},
+
+  {id:"ip", n:8, en:{t:"Intellectual Property", b:[
+    {p:"The App, including its software, design, branding, text, and graphics (excluding your uploaded content and generated results), is owned by Revima and protected by intellectual property laws. We grant you a limited, personal, non-transferable, non-exclusive, revocable license to use the App for its intended purpose. No other rights are granted."}
+  ]}, vi:{t:"Sở hữu trí tuệ", b:[
+    {p:"Ứng dụng, bao gồm phần mềm, thiết kế, thương hiệu, văn bản và đồ họa (trừ nội dung bạn tải lên và kết quả tạo ra), thuộc sở hữu của Revima và được bảo vệ bởi luật sở hữu trí tuệ. Chúng tôi cấp cho bạn giấy phép giới hạn, cá nhân, không thể chuyển nhượng, không độc quyền và có thể thu hồi để dùng Ứng dụng đúng mục đích. Không có quyền nào khác được cấp."}
+  ]}},
+
+  {id:"privacy", n:9, en:{t:"Privacy", b:[
+    {p:"Your use of the App is also governed by our [Privacy Policy](privacy.html), which explains what data we collect and how we handle it. By using the App, you consent to those practices."}
+  ]}, vi:{t:"Quyền riêng tư", b:[
+    {p:"Việc bạn dùng Ứng dụng cũng được điều chỉnh bởi [Chính sách Bảo mật](privacy.html) của chúng tôi, giải thích dữ liệu nào chúng tôi thu thập và cách xử lý. Khi dùng Ứng dụng, bạn đồng ý với các thực hành đó."}
+  ]}},
+
+  {id:"disclaimers", n:10, en:{t:"Disclaimers", b:[
+    {legal:'THE APP AND ALL RESULTS ARE PROVIDED **"AS IS"** AND **"AS AVAILABLE"**, WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE, OR THAT RESULTS WILL MEET YOUR EXPECTATIONS.'}
+  ]}, vi:{t:"Tuyên bố miễn trừ", b:[
+    {legal:'ỨNG DỤNG VÀ MỌI KẾT QUẢ ĐƯỢC CUNG CẤP **"NGUYÊN TRẠNG"** VÀ **"THEO MỨC SẴN CÓ"**, KHÔNG KÈM BẢO ĐẢM DƯỚI BẤT KỲ HÌNH THỨC NÀO, DÙ RÕ RÀNG HAY NGỤ Ý, BAO GỒM NHƯNG KHÔNG GIỚI HẠN Ở CÁC BẢO ĐẢM NGỤ Ý VỀ KHẢ NĂNG THƯƠNG MẠI, SỰ PHÙ HỢP CHO MỘT MỤC ĐÍCH CỤ THỂ, TÍNH CHÍNH XÁC VÀ KHÔNG XÂM PHẠM. CHÚNG TÔI KHÔNG BẢO ĐẢM RẰNG ỨNG DỤNG SẼ KHÔNG GIÁN ĐOẠN, AN TOÀN HAY KHÔNG LỖI, HOẶC RẰNG KẾT QUẢ SẼ ĐÁP ỨNG KỲ VỌNG CỦA BẠN.'}
+  ]}},
+
+  {id:"liability", n:11, en:{t:"Limitation of Liability", b:[
+    {legal:"TO THE MAXIMUM EXTENT PERMITTED BY LAW, REVIMA AND ITS OPERATORS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF DATA, IMAGES, PROFITS, OR GOODWILL, ARISING FROM OR RELATED TO YOUR USE OF THE APP. OUR TOTAL LIABILITY FOR ANY CLAIM RELATING TO THE APP WILL NOT EXCEED THE GREATER OF THE AMOUNT YOU PAID US (IF ANY) IN THE 12 MONTHS BEFORE THE CLAIM, OR USD 50."},
+    {p:"Some jurisdictions do not allow certain limitations, so some of the above may not apply to you."}
+  ]}, vi:{t:"Giới hạn trách nhiệm", b:[
+    {legal:"TRONG PHẠM VI TỐI ĐA PHÁP LUẬT CHO PHÉP, REVIMA VÀ NHỮNG NGƯỜI VẬN HÀNH SẼ KHÔNG CHỊU TRÁCH NHIỆM VỀ BẤT KỲ THIỆT HẠI GIÁN TIẾP, NGẪU NHIÊN, ĐẶC BIỆT, HỆ QUẢ HAY TRỪNG PHẠT NÀO, HOẶC VỀ BẤT KỲ MẤT MÁT DỮ LIỆU, HÌNH ẢNH, LỢI NHUẬN HAY UY TÍN NÀO, PHÁT SINH TỪ HOẶC LIÊN QUAN ĐẾN VIỆC BẠN DÙNG ỨNG DỤNG. TỔNG TRÁCH NHIỆM CỦA CHÚNG TÔI ĐỐI VỚI BẤT KỲ KHIẾU NẠI NÀO LIÊN QUAN ĐẾN ỨNG DỤNG SẼ KHÔNG VƯỢT QUÁ GIÁ TRỊ LỚN HƠN GIỮA SỐ TIỀN BẠN ĐÃ TRẢ CHO CHÚNG TÔI (NẾU CÓ) TRONG 12 THÁNG TRƯỚC KHI KHIẾU NẠI, HOẶC 50 USD."},
+    {p:"Một số khu vực pháp lý không cho phép một số giới hạn nhất định, nên một số nội dung trên có thể không áp dụng cho bạn."}
+  ]}},
+
+  {id:"indemnify", n:12, en:{t:"Indemnification", b:[
+    {p:"You agree to indemnify and hold harmless Revima and its operators from any claims, damages, liabilities, and expenses (including reasonable legal fees) arising from your content, your use of the App, or your violation of these Terms or any law or third-party right."}
+  ]}, vi:{t:"Bồi thường", b:[
+    {p:"Bạn đồng ý bồi thường và bảo vệ Revima cùng những người vận hành khỏi mọi khiếu nại, thiệt hại, trách nhiệm và chi phí (bao gồm phí pháp lý hợp lý) phát sinh từ nội dung của bạn, việc bạn dùng Ứng dụng, hoặc việc bạn vi phạm các Điều khoản này hay bất kỳ luật hoặc quyền của bên thứ ba nào."}
+  ]}},
+
+  {id:"termination", n:13, en:{t:"Termination", b:[
+    {p:"You may stop using the App at any time. We may suspend or terminate your access if you violate these Terms or if we discontinue the service. Provisions that by their nature should survive termination (including ownership, disclaimers, limitation of liability, and indemnification) will survive."}
+  ]}, vi:{t:"Chấm dứt", b:[
+    {p:"Bạn có thể ngừng dùng Ứng dụng bất cứ lúc nào. Chúng tôi có thể tạm ngưng hoặc chấm dứt quyền truy cập của bạn nếu bạn vi phạm các Điều khoản này hoặc nếu chúng tôi ngừng dịch vụ. Các điều khoản mà theo bản chất cần tiếp tục có hiệu lực sau khi chấm dứt (bao gồm quyền sở hữu, tuyên bố miễn trừ, giới hạn trách nhiệm và bồi thường) sẽ vẫn tiếp tục có hiệu lực."}
+  ]}},
+
+  {id:"changes", n:14, en:{t:"Changes to These Terms", b:[
+    {p:'We may update these Terms from time to time. When we do, we will revise the "Last updated" date above, and material changes may be communicated within the App. Your continued use of the App after an update means you accept the revised Terms.'}
+  ]}, vi:{t:"Thay đổi Điều khoản", b:[
+    {p:'Chúng tôi có thể cập nhật các Điều khoản này theo thời gian. Khi đó, chúng tôi sẽ chỉnh ngày "Cập nhật lần cuối" ở trên, và thay đổi quan trọng có thể được thông báo trong Ứng dụng. Việc bạn tiếp tục dùng Ứng dụng sau khi cập nhật đồng nghĩa bạn chấp nhận các Điều khoản đã sửa đổi.'}
+  ]}},
+
+  {id:"law", n:15, en:{t:"Governing Law", b:[
+    {p:"These Terms are governed by applicable law in the jurisdiction in which Revima operates, without regard to conflict-of-laws principles. Any dispute will be subject to the courts of that jurisdiction, unless mandatory local law provides otherwise."}
+  ]}, vi:{t:"Luật điều chỉnh", b:[
+    {p:"Các Điều khoản này được điều chỉnh bởi luật hiện hành tại khu vực pháp lý nơi Revima hoạt động, không xét đến nguyên tắc xung đột luật. Mọi tranh chấp sẽ thuộc thẩm quyền tòa án của khu vực đó, trừ khi luật địa phương bắt buộc quy định khác."}
+  ]}},
+
+  {id:"contact", n:16, en:{t:"Contact Us", b:[
+    {p:"For questions about these Terms:"},
+    {contact:{who:"Revima", email:"peakapp.general@gmail.com"}}
+  ]}, vi:{t:"Liên hệ", b:[
+    {p:"Cho câu hỏi về các Điều khoản này:"},
+    {contact:{who:"Revima", email:"peakapp.general@gmail.com"}}
+  ]}}
+];
+
+function inl(s){
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
+    .replace(/`(.+?)`/g,"<code>$1</code>")
+    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
+}
+function block(bk){
+  if(bk.p) return "<p>"+inl(bk.p)+"</p>";
+  if(bk.h3) return "<h3>"+inl(bk.h3)+"</h3>";
+  if(bk.ul) return "<ul>"+bk.ul.map(li=>"<li>"+inl(li)+"</li>").join("")+"</ul>";
+  if(bk.legal) return '<div class="legal">'+inl(bk.legal)+"</div>";
+  if(bk.contact) return '<div class="contact-card"><div class="lbl">Email</div><div class="who">'+bk.contact.who+'</div><a href="mailto:'+bk.contact.email+'">'+bk.contact.email+"</a></div>";
+  return "";
+}
+function render(lang){
+  const main=document.getElementById("content");
+  const toc=document.getElementById("toc");
+  main.innerHTML=""; toc.innerHTML="";
+  SECTIONS.forEach(s=>{
+    const c=s[lang], sec=document.createElement("section");
+    sec.className="sec"; sec.id=s.id; sec.setAttribute("data-od-id",s.id);
+    const num=s.n?'<span class="n">'+String(s.n).padStart(2,"0")+"</span>":"";
+    sec.innerHTML="<h2>"+num+"<span>"+inl(c.t)+"</span></h2>"+c.b.map(block).join("");
+    main.appendChild(sec);
+    if(s.n){
+      const li=document.createElement("li");
+      li.innerHTML='<a href="#'+s.id+'">'+inl(c.t)+"</a>";
+      toc.appendChild(li);
+    }
+  });
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n"); if(UI[lang][k]!=null) el.textContent=UI[lang][k];
+  });
+  document.documentElement.lang=UI[lang].htmlLang;
+  document.title=UI[lang].title+" — Revima";
+  setupSpy();
+}
+let spyEls=[];
+function setupSpy(){ spyEls=[...document.querySelectorAll("main section.sec")]; }
+function onScroll(){
+  if(!spyEls.length) return;
+  let cur=spyEls[0]?.id;
+  for(const el of spyEls){ if(el.getBoundingClientRect().top<=110) cur=el.id; }
+  document.querySelectorAll("#toc a").forEach(a=>{
+    a.classList.toggle("active", a.getAttribute("href")==="#"+cur);
+  });
+}
+function setLang(lang){
+  try{localStorage.setItem("revima_lang",lang)}catch(e){}
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===lang?"true":"false"));
+  render(lang); onScroll();
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+window.addEventListener("scroll",onScroll,{passive:true});
+let initLang="en";
+try{const s=localStorage.getItem("revima_lang"); if(s==="vi"||s==="en") initLang=s;}catch(e){}
+setLang(initLang);
+</script>
+</body>
+</html>

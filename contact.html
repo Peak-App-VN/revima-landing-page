@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact Us — Revima</title>
+<style>
+  :root{
+    --bg:#0b0d0f; --surface:#121518; --surface-2:#171b1f;
+    --fg:#eaf0f2; --muted:#8b969d; --border:rgba(255,255,255,0.08);
+    --accent:#8FECFF; --accent-dim:rgba(143,236,255,0.10); --accent-line:rgba(143,236,255,0.30);
+    --danger:#ff6b6b;
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{min-height:100vh;background:var(--bg);color:var(--fg);font:16px/1.6 var(--font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display:flex;flex-direction:column}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+
+  .bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    padding:14px clamp(20px,5vw,48px);background:rgba(11,13,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em;color:var(--fg)}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px 2px var(--accent-line)}
+  .bar-right{display:flex;align-items:center;gap:14px}
+  .lang{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:var(--surface)}
+  .lang button{appearance:none;border:0;background:transparent;color:var(--muted);font:600 12px/1 var(--font);letter-spacing:.04em;padding:7px 13px;cursor:pointer;transition:color .15s}
+  .lang button[aria-pressed="true"]{background:var(--accent-dim);color:var(--accent)}
+  .lang button:hover{color:var(--fg)}
+  .back{color:var(--muted);font-size:13px}.back:hover{color:var(--fg);text-decoration:none}
+
+  main{flex:1;width:100%;max-width:1040px;margin:0 auto;padding:clamp(40px,7vw,80px) clamp(20px,5vw,48px) 72px;position:relative}
+  main::before{content:"";position:absolute;top:0;left:0;width:560px;max-width:80%;height:300px;
+    background:radial-gradient(55% 60% at 25% 0,var(--accent-dim),transparent 72%);pointer-events:none;filter:blur(6px)}
+
+  .head{position:relative;max-width:620px;margin-bottom:48px}
+  .eyebrow{font:600 12px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  h1{font-size:clamp(34px,6vw,54px);line-height:1.03;letter-spacing:-.03em;font-weight:600}
+  .sub{margin-top:16px;color:var(--muted);font-size:clamp(15px,2.2vw,18px)}
+
+  .grid{position:relative;display:grid;gap:28px;grid-template-columns:1fr}
+  @media(min-width:860px){.grid{grid-template-columns:1.25fr .9fr;gap:44px;align-items:start}}
+
+  /* form */
+  form{display:flex;flex-direction:column;gap:18px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font:600 12px/1 var(--font);letter-spacing:.03em;color:#cdd6da;text-transform:uppercase}
+  .field label .opt{color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0}
+  .field input,.field select,.field textarea{
+    width:100%;background:var(--surface);border:1px solid var(--border);border-radius:11px;color:var(--fg);
+    font:15px/1.5 var(--font);padding:13px 14px;transition:border-color .15s,box-shadow .15s;appearance:none}
+  .field textarea{resize:vertical;min-height:140px}
+  .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238b969d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;cursor:pointer}
+  .field input::placeholder,.field textarea::placeholder{color:#5e686e}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-dim)}
+  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--danger)}
+  .err{display:none;color:var(--danger);font-size:12.5px;letter-spacing:.01em}
+  .field.invalid .err{display:block}
+
+  .submit{display:inline-flex;align-items:center;justify-content:center;gap:9px;align-self:flex-start;
+    background:var(--accent);color:#06222a;border:0;border-radius:11px;font:600 15px/1 var(--font);letter-spacing:.01em;
+    padding:14px 24px;cursor:pointer;transition:transform .15s,box-shadow .15s,filter .15s}
+  .submit:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(143,236,255,.45)}
+  .submit:active{transform:translateY(0)}
+  .submit svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .formnote{color:var(--muted);font-size:12.5px;line-height:1.5;margin-top:-4px}
+
+  .success{display:none;flex-direction:column;gap:12px;align-items:flex-start;padding:26px;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--accent-line);border-radius:16px}
+  .success.show{display:flex}
+  .success .ck{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--accent-dim);border:1px solid var(--accent-line);color:var(--accent)}
+  .success .ck svg{width:24px;height:24px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .success h3{font-size:19px;letter-spacing:-.01em}
+  .success p{color:var(--muted);font-size:14.5px}
+  .success a.again{color:var(--accent);font-weight:600;font-size:14px;cursor:pointer}
+
+  /* info column */
+  .aside{display:flex;flex-direction:column;gap:14px}
+  .info{background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--border);border-radius:16px;padding:22px}
+  .info .ico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--accent-dim);border:1px solid var(--accent-line);color:var(--accent);margin-bottom:14px}
+  .info .ico svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .info .lbl{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .info .val{font-weight:600;font-size:16px;letter-spacing:-.01em}
+  .info p{color:var(--muted);font-size:14px;line-height:1.55;margin-top:4px}
+  .info a{font-size:15px}
+
+  footer{border-top:1px solid var(--border);padding:26px clamp(20px,5vw,48px);color:var(--muted);font-size:13px;text-align:center}
+  footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
+  .foot-links{display:inline-flex;gap:18px;flex-wrap:wrap;justify-content:center}
+</style>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="index.html"><span class="dot"></span><b>Revima</b></a>
+    <div class="bar-right">
+      <a class="back" href="index.html" data-i18n="back">← Legal</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="vi" aria-pressed="false">VI</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="head">
+      <div class="eyebrow" data-i18n="eyebrow">Contact</div>
+      <h1 data-i18n="title">Get in touch</h1>
+      <p class="sub" data-i18n="sub">Questions, bug reports, or a data request — reach the Revima team directly. We read every message.</p>
+    </div>
+
+    <div class="grid">
+      <div>
+        <form id="cform" novalidate>
+          <div class="field" id="f-name">
+            <label data-i18n="lName">Name <span class="opt" data-i18n="optional">(optional)</span></label>
+            <input type="text" id="name" autocomplete="name" data-i18n-ph="phName" placeholder="Your name" />
+          </div>
+          <div class="field" id="f-email">
+            <label data-i18n="lEmail">Email</label>
+            <input type="email" id="email" autocomplete="email" data-i18n-ph="phEmail" placeholder="you@example.com" />
+            <span class="err" data-i18n="eEmail">Enter a valid email so we can reply.</span>
+          </div>
+          <div class="field" id="f-topic">
+            <label data-i18n="lTopic">Topic</label>
+            <select id="topic">
+              <option value="general" data-i18n="tGeneral">General question</option>
+              <option value="bug" data-i18n="tBug">Bug / technical issue</option>
+              <option value="report" data-i18n="tReport">Report a result</option>
+              <option value="privacy" data-i18n="tPrivacy">Privacy / data request</option>
+              <option value="other" data-i18n="tOther">Other</option>
+            </select>
+          </div>
+          <div class="field" id="f-msg">
+            <label data-i18n="lMsg">Message</label>
+            <textarea id="msg" data-i18n-ph="phMsg" placeholder="How can we help?"></textarea>
+            <span class="err" data-i18n="eMsg">Please write a short message.</span>
+          </div>
+          <button type="submit" class="submit">
+            <span data-i18n="send">Send message</span>
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+          <p class="formnote" data-i18n="note">No account needed. Submitting opens your email app with the message pre-filled, addressed to the Revima team.</p>
+        </form>
+
+        <div class="success" id="success" role="status">
+          <span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <h3 data-i18n="okTitle">Your email is ready</h3>
+          <p data-i18n="okBody">We opened your email app with the message pre-filled. Hit send and we'll get back to you.</p>
+          <a class="again" id="again" data-i18n="again">← Write another message</a>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <div class="info">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg></span>
+          <div class="lbl" data-i18n="iEmailLbl">Email us</div>
+          <a href="mailto:peakapp.general@gmail.com">peakapp.general@gmail.com</a>
+          <p data-i18n="iEmailDesc">The fastest way to reach us for anything not covered in the app.</p>
+        </div>
+        <div class="info">
+          <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div class="lbl" data-i18n="iTimeLbl">Response time</div>
+          <div class="val" data-i18n="iTimeVal">Within 2–3 business days</div>
+          <p data-i18n="iTimeDesc">A small team reviews every message. We don't guarantee a response time, but we read them all.</p>
+        </div>
+        <div class="info">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V7l8-4z"/><path d="M12 8v4M12 15.5h.01"/></svg></span>
+          <div class="lbl" data-i18n="iReportLbl">Report a result</div>
+          <p data-i18n="iReportDesc">For a specific generated photo, use the in-app <strong>Report</strong> button — it sends us the exact result and reason.</p>
+          <p style="margin-top:10px"><a href="privacy.html" data-i18n="iPrivacyLink">Privacy &amp; data requests →</a></p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-links">
+      <a href="index.html" data-i18n="fLegal">Legal center</a>
+      <a href="privacy.html" data-i18n="fPrivacy">Privacy</a>
+      <a href="terms.html" data-i18n="fTerms">Terms</a>
+      <a href="mailto:peakapp.general@gmail.com">peakapp.general@gmail.com</a>
+    </div>
+  </footer>
+
+<script>
+const UI={
+  en:{back:"← Legal", eyebrow:"Contact", title:"Get in touch",
+      sub:"Questions, bug reports, or a data request — reach the Revima team directly. We read every message.",
+      lName:"Name", optional:"(optional)", phName:"Your name",
+      lEmail:"Email", phEmail:"you@example.com", eEmail:"Enter a valid email so we can reply.",
+      lTopic:"Topic", tGeneral:"General question", tBug:"Bug / technical issue", tReport:"Report a result",
+      tPrivacy:"Privacy / data request", tOther:"Other",
+      lMsg:"Message", phMsg:"How can we help?", eMsg:"Please write a short message.",
+      send:"Send message",
+      note:"No account needed. Submitting opens your email app with the message pre-filled, addressed to the Revima team.",
+      okTitle:"Your email is ready", okBody:"We opened your email app with the message pre-filled. Hit send and we'll get back to you.",
+      again:"← Write another message",
+      iEmailLbl:"Email us", iEmailDesc:"The fastest way to reach us for anything not covered in the app.",
+      iTimeLbl:"Response time", iTimeVal:"Within 2–3 business days",
+      iTimeDesc:"A small team reviews every message. We don't guarantee a response time, but we read them all.",
+      iReportLbl:"Report a result", iReportDesc:"For a specific generated photo, use the in-app <strong>Report</strong> button — it sends us the exact result and reason.",
+      iPrivacyLink:"Privacy & data requests →",
+      fLegal:"Legal center", fPrivacy:"Privacy", fTerms:"Terms",
+      htmlLang:"en", subjPrefix:"[Revima]"},
+  vi:{back:"← Pháp lý", eyebrow:"Liên hệ", title:"Liên hệ với chúng tôi",
+      sub:"Câu hỏi, báo lỗi hay yêu cầu về dữ liệu — liên hệ trực tiếp đội ngũ Revima. Chúng tôi đọc mọi tin nhắn.",
+      lName:"Tên", optional:"(không bắt buộc)", phName:"Tên của bạn",
+      lEmail:"Email", phEmail:"ban@vidu.com", eEmail:"Nhập email hợp lệ để chúng tôi phản hồi.",
+      lTopic:"Chủ đề", tGeneral:"Câu hỏi chung", tBug:"Lỗi / vấn đề kỹ thuật", tReport:"Báo cáo kết quả",
+      tPrivacy:"Quyền riêng tư / yêu cầu dữ liệu", tOther:"Khác",
+      lMsg:"Nội dung", phMsg:"Chúng tôi có thể giúp gì?", eMsg:"Vui lòng viết nội dung ngắn gọn.",
+      send:"Gửi tin nhắn",
+      note:"Không cần tài khoản. Khi gửi, ứng dụng email của bạn sẽ mở sẵn nội dung, gửi tới đội ngũ Revima.",
+      okTitle:"Email của bạn đã sẵn sàng", okBody:"Chúng tôi đã mở ứng dụng email với nội dung điền sẵn. Nhấn gửi và chúng tôi sẽ phản hồi.",
+      again:"← Viết tin nhắn khác",
+      iEmailLbl:"Gửi email", iEmailDesc:"Cách nhanh nhất để liên hệ cho mọi việc ngoài ứng dụng.",
+      iTimeLbl:"Thời gian phản hồi", iTimeVal:"Trong 2–3 ngày làm việc",
+      iTimeDesc:"Một đội nhỏ xem xét mọi tin nhắn. Chúng tôi không cam kết thời gian phản hồi, nhưng đọc tất cả.",
+      iReportLbl:"Báo cáo kết quả", iReportDesc:"Với một ảnh tạo cụ thể, dùng nút <strong>Báo cáo</strong> trong ứng dụng — nó gửi cho chúng tôi đúng kết quả và lý do.",
+      iPrivacyLink:"Quyền riêng tư & yêu cầu dữ liệu →",
+      fLegal:"Trung tâm pháp lý", fPrivacy:"Bảo mật", fTerms:"Điều khoản",
+      htmlLang:"vi", subjPrefix:"[Revima]"}
+};
+let LANG="en";
+function apply(lang){
+  const d=UI[lang]; LANG=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n");
+    if(d[k]==null) return;
+    if(/iReportDesc|iEmailDesc|iPrivacyLink/.test(k)) el.innerHTML=d[k]; else el.textContent=d[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+    const k=el.getAttribute("data-i18n-ph"); if(d[k]!=null) el.placeholder=d[k];
+  });
+  document.documentElement.lang=d.htmlLang;
+  document.title=d.title+" — Revima";
+}
+function setLang(lang){
+  try{localStorage.setItem("revima_lang",lang)}catch(e){}
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===lang?"true":"false"));
+  apply(lang);
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+let initLang="en";
+try{const s=localStorage.getItem("revima_lang"); if(s==="vi"||s==="en") initLang=s;}catch(e){}
+setLang(initLang);
+
+/* ---- form ---- */
+const form=document.getElementById("cform");
+const success=document.getElementById("success");
+function mark(id,bad){document.getElementById(id).classList.toggle("invalid",bad);}
+function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+form.addEventListener("submit",function(e){
+  e.preventDefault();
+  const email=document.getElementById("email").value.trim();
+  const msg=document.getElementById("msg").value.trim();
+  const name=document.getElementById("name").value.trim();
+  const topicSel=document.getElementById("topic");
+  const topicLabel=topicSel.options[topicSel.selectedIndex].textContent.trim();
+  const badEmail=!validEmail(email), badMsg=msg.length<2;
+  mark("f-email",badEmail); mark("f-msg",badMsg);
+  if(badEmail){document.getElementById("email").focus();return;}
+  if(badMsg){document.getElementById("msg").focus();return;}
+  const subject=encodeURIComponent(UI[LANG].subjPrefix+" "+topicLabel);
+  const lines=[msg,"",(LANG==="vi"?"— Từ:":"— From:")+" "+(name||"(anonymous)")+" <"+email+">"];
+  const body=encodeURIComponent(lines.join("\n"));
+  window.location.href="mailto:peakapp.general@gmail.com?subject="+subject+"&body="+body;
+  form.style.display="none";
+  success.classList.add("show");
+});
+document.getElementById("again").addEventListener("click",function(){
+  success.classList.remove("show");
+  form.style.display="flex";
+  form.reset();
+  mark("f-email",false); mark("f-msg",false);
+});
+</script>
+</body>
+</html>

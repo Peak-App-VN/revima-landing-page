@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy — Revima</title>
+<style>
+  :root{
+    --bg:#0b0d0f; --surface:#121518; --surface-2:#171b1f;
+    --fg:#eaf0f2; --muted:#8b969d; --border:rgba(255,255,255,0.08);
+    --accent:#8FECFF; --accent-dim:rgba(143,236,255,0.10); --accent-line:rgba(143,236,255,0.30);
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,monospace;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font:16px/1.65 var(--font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  code{font:0.88em var(--mono);background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:.08em .4em;color:var(--accent)}
+
+  /* top bar */
+  .bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    padding:14px clamp(20px,5vw,48px);background:rgba(11,13,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em;color:var(--fg)}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px 2px var(--accent-line)}
+  .brand b{font-weight:600}
+  .bar-right{display:flex;align-items:center;gap:14px}
+  .lang{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:var(--surface)}
+  .lang button{appearance:none;border:0;background:transparent;color:var(--muted);font:600 12px/1 var(--font);letter-spacing:.04em;padding:7px 13px;cursor:pointer;transition:color .15s}
+  .lang button[aria-pressed="true"]{background:var(--accent-dim);color:var(--accent)}
+  .lang button:hover{color:var(--fg)}
+  .back{color:var(--muted);font-size:13px;letter-spacing:.01em}
+  .back:hover{color:var(--fg);text-decoration:none}
+
+  /* layout */
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,48px);
+    display:grid;grid-template-columns:1fr;gap:0}
+  @media(min-width:980px){.wrap{grid-template-columns:230px minmax(0,var(--maxw));gap:56px;justify-content:center}}
+
+  /* hero */
+  .hero{grid-column:1/-1;padding:clamp(48px,8vw,90px) 0 28px;border-bottom:1px solid var(--border);margin-bottom:40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:auto -30% -60% auto;width:480px;height:300px;
+    background:radial-gradient(60% 60% at 70% 30%,var(--accent-dim),transparent 70%);pointer-events:none;filter:blur(8px)}
+  .eyebrow{font:600 12px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  h1{font-size:clamp(34px,6vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:600}
+  .updated{margin-top:18px;color:var(--muted);font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .updated .pill{font:600 11px/1 var(--mono);letter-spacing:.08em;color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:999px;padding:5px 11px}
+
+  /* toc */
+  .toc{display:none}
+  @media(min-width:980px){
+    .toc{display:block;align-self:start;position:sticky;top:90px;padding-top:4px}
+    .toc-title{font:600 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    .toc ol{list-style:none;display:flex;flex-direction:column;gap:2px;counter-reset:t}
+    .toc a{display:block;color:var(--muted);font-size:13.5px;line-height:1.35;padding:6px 12px;border-left:2px solid transparent;border-radius:0 6px 6px 0;transition:.15s}
+    .toc a:hover{color:var(--fg);background:var(--surface)}
+    .toc a.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-dim)}
+  }
+
+  /* content */
+  main{padding-bottom:80px;min-width:0}
+  .lead{font-size:18px;color:#cdd6da;margin-bottom:14px}
+  section.sec{padding:30px 0;border-top:1px solid var(--border)}
+  section.sec:first-of-type{border-top:0;padding-top:6px}
+  .sec h2{font-size:clamp(20px,3vw,24px);letter-spacing:-.015em;font-weight:600;margin-bottom:16px;display:flex;gap:12px;align-items:baseline;scroll-margin-top:84px}
+  .sec h2 .n{font:600 13px/1 var(--mono);color:var(--accent);flex:none;padding-top:3px}
+  .sec h3{font-size:16px;font-weight:600;margin:22px 0 8px;color:#dde5e8}
+  .sec p{color:#bcc6cb;margin:0 0 14px}
+  .sec p:last-child{margin-bottom:0}
+  .sec ul{list-style:none;margin:4px 0 14px;display:flex;flex-direction:column;gap:9px}
+  .sec ul li{position:relative;padding-left:22px;color:#bcc6cb}
+  .sec ul li::before{content:"";position:absolute;left:4px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-line)}
+  .sec ul li strong{color:#e7eef1;font-weight:600}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:10px;padding:16px 18px;color:#cdd6da;font-size:15px;margin:6px 0 14px}
+  .contact-card{margin-top:18px;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--border);border-radius:14px;padding:22px 24px}
+  .contact-card .lbl{font:600 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .contact-card .who{font-weight:600;font-size:17px}
+  .contact-card a{font-size:15px}
+
+  footer{border-top:1px solid var(--border);padding:34px clamp(20px,5vw,48px) 60px;color:var(--muted);font-size:13.5px}
+  .foot-in{max-width:1120px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
+  .foot-links{display:flex;gap:22px}
+  .foot-links a{color:var(--muted)}.foot-links a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="index.html"><span class="dot"></span><b>Revima</b></a>
+    <div class="bar-right">
+      <a class="back" href="index.html" data-i18n="back">← Legal</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="vi" aria-pressed="false">VI</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow" data-i18n="eyebrow">Privacy</div>
+      <h1 data-i18n="title">Privacy Policy</h1>
+      <div class="updated">
+        <span class="pill" data-i18n="updatedPill">UPDATED</span>
+        <span data-i18n="updatedDate">June 30, 2026</span>
+      </div>
+    </div>
+
+    <nav class="toc" aria-label="Contents">
+      <div class="toc-title" data-i18n="onThisPage">On this page</div>
+      <ol id="toc"></ol>
+    </nav>
+
+    <main id="content"></main>
+  </div>
+
+  <footer>
+    <div class="foot-in">
+      <span>© 2026 Revima · <span data-i18n="footTag">Revive your history.</span></span>
+      <div class="foot-links">
+        <a href="index.html" data-i18n="fLegal">Legal center</a>
+        <a href="terms.html" data-i18n="fTerms">Terms</a>
+        <a href="contact.html" data-i18n="fContact">Contact</a>
+        <a href="mailto:peakapp.general@gmail.com">peakapp.general@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+/* ---------- UI strings ---------- */
+const UI = {
+  en:{back:"← Legal", eyebrow:"Privacy", title:"Privacy Policy", updatedPill:"UPDATED",
+      updatedDate:"June 30, 2026", onThisPage:"On this page", footTag:"Revive your history.",
+      fLegal:"Legal center", fTerms:"Terms", fContact:"Contact", htmlLang:"en"},
+  vi:{back:"← Pháp lý", eyebrow:"Bảo mật", title:"Chính sách Bảo mật", updatedPill:"CẬP NHẬT",
+      updatedDate:"30 tháng 6, 2026", onThisPage:"Mục lục", footTag:"Hồi sinh ký ức của bạn.",
+      fLegal:"Trung tâm pháp lý", fTerms:"Điều khoản", fContact:"Liên hệ", htmlLang:"vi"}
+};
+
+/* ---------- content: blocks = {p}|{h3}|{ul:[]}|{note}|{contact:{who,email}} ---------- */
+const SECTIONS = [
+  {id:"intro", en:{t:"Overview", b:[
+    {p:'This Privacy Policy explains how **Revima** ("Revima", "we", "us", or "our") collects, uses, and protects your information when you use the Revima mobile application (the "App"). Revima is an AI-powered photo tool that restores, colorizes, upscales, and enhances your photos.'},
+    {p:"By using the App, you agree to the practices described in this Policy. If you do not agree, please do not use the App."}
+  ]}, vi:{t:"Tổng quan", b:[
+    {p:'Chính sách Bảo mật này giải thích cách **Revima** ("Revima", "chúng tôi") thu thập, sử dụng và bảo vệ thông tin của bạn khi bạn dùng ứng dụng di động Revima ("Ứng dụng"). Revima là công cụ ảnh dùng AI để phục chế, tô màu, upscale và nâng cao ảnh của bạn.'},
+    {p:"Khi dùng Ứng dụng, bạn đồng ý với các thực hành nêu trong Chính sách này. Nếu không đồng ý, vui lòng không dùng Ứng dụng."}
+  ]}},
+
+  {id:"who", n:1, en:{t:"Who We Are", b:[
+    {p:"Revima is operated by the Revima team. If you have any questions about this Policy or your data, contact us at:"},
+    {contact:{who:"Revima", email:"peakapp.general@gmail.com"}}
+  ]}, vi:{t:"Chúng tôi là ai", b:[
+    {p:"Revima do đội ngũ Revima vận hành. Nếu bạn có câu hỏi về Chính sách này hoặc dữ liệu của bạn, hãy liên hệ:"},
+    {contact:{who:"Revima", email:"peakapp.general@gmail.com"}}
+  ]}},
+
+  {id:"collect", n:2, en:{t:"Information We Collect", b:[
+    {p:"Revima is designed to work **without requiring you to create an account**. We do not ask for your name, email address, phone number, or social profiles. The information we process falls into the following categories."},
+    {h3:"2.1 Photos You Upload"},
+    {p:"When you choose to restore, colorize, or enhance a photo, the image you select is uploaded to our servers so that our AI system can process it. The original photo and the generated result are stored so we can show them in your **History** and let you download them."},
+    {p:"We process your photos **only** to provide the editing features you request. We do not use your photos to train our models, sell them, or share them for advertising."},
+    {h3:"2.2 Device and Session Information"},
+    {p:"To create an anonymous session and protect the service from abuse, we collect:"},
+    {ul:["**Platform** — whether your device is iOS or Android.",
+         "**Device fingerprint** — a stable, app-specific identifier: on **iOS**, a random UUID generated on first launch and stored in the device Keychain; on **Android**, the system `ANDROID_ID` value."]},
+    {p:"This identifier does **not** reveal your real-world identity. It allows us to maintain your session, apply usage limits, and prevent fraud and abuse."},
+    {h3:"2.3 Reports You Submit"},
+    {p:'If you report a result (for example, "poor image quality" or "inappropriate content"), we collect the **reason** you select and any **optional free-text description** you provide, together with a reference to the affected generation, so we can review and improve the service.'},
+    {h3:"2.4 Technical and Diagnostic Data"},
+    {p:"We may process limited technical data needed to operate the App, such as request identifiers and timestamps, error and crash information, and basic logs used for security and troubleshooting."}
+  ]}, vi:{t:"Thông tin chúng tôi thu thập", b:[
+    {p:"Revima được thiết kế để hoạt động **mà không cần bạn tạo tài khoản**. Chúng tôi không hỏi tên, email, số điện thoại hay hồ sơ mạng xã hội của bạn. Thông tin chúng tôi xử lý gồm các nhóm sau."},
+    {h3:"2.1 Ảnh bạn tải lên"},
+    {p:"Khi bạn chọn phục chế, tô màu hoặc nâng cao một bức ảnh, ảnh bạn chọn được tải lên máy chủ của chúng tôi để hệ thống AI xử lý. Ảnh gốc và kết quả tạo ra được lưu lại để hiển thị trong **Lịch sử** và cho bạn tải về."},
+    {p:"Chúng tôi xử lý ảnh của bạn **chỉ** nhằm cung cấp tính năng chỉnh sửa bạn yêu cầu. Chúng tôi không dùng ảnh của bạn để huấn luyện mô hình, bán, hay chia sẻ cho mục đích quảng cáo."},
+    {h3:"2.2 Thông tin thiết bị và phiên"},
+    {p:"Để tạo phiên ẩn danh và bảo vệ dịch vụ khỏi lạm dụng, chúng tôi thu thập:"},
+    {ul:["**Nền tảng** — thiết bị của bạn là iOS hay Android.",
+         "**Dấu vân tay thiết bị** — một mã định danh ổn định, riêng cho ứng dụng: trên **iOS** là một UUID ngẫu nhiên tạo ở lần mở đầu tiên và lưu trong Keychain; trên **Android** là giá trị `ANDROID_ID` của hệ thống."]},
+    {p:"Mã định danh này **không** tiết lộ danh tính thật của bạn. Nó giúp chúng tôi duy trì phiên, áp dụng giới hạn sử dụng và ngăn chặn gian lận, lạm dụng."},
+    {h3:"2.3 Báo cáo bạn gửi"},
+    {p:'Nếu bạn báo cáo một kết quả (ví dụ "chất lượng ảnh kém" hoặc "nội dung không phù hợp"), chúng tôi thu thập **lý do** bạn chọn và **mô tả tự do tùy chọn** bạn nhập, cùng với tham chiếu tới bản tạo bị ảnh hưởng, để xem xét và cải thiện dịch vụ.'},
+    {h3:"2.4 Dữ liệu kỹ thuật và chẩn đoán"},
+    {p:"Chúng tôi có thể xử lý dữ liệu kỹ thuật giới hạn cần để vận hành Ứng dụng, như mã định danh yêu cầu và dấu thời gian, thông tin lỗi và sự cố, cùng nhật ký cơ bản dùng cho bảo mật và khắc phục sự cố."}
+  ]}},
+
+  {id:"notcollect", n:3, en:{t:"Information We Do Not Collect", b:[
+    {ul:["We do not collect your name, email, or contact details.",
+         "We do not require account registration or social login.",
+         "We do not access your photo library beyond the specific images you choose to upload or save.",
+         "We do not sell your personal data."]}
+  ]}, vi:{t:"Thông tin chúng tôi KHÔNG thu thập", b:[
+    {ul:["Chúng tôi không thu thập tên, email hay thông tin liên hệ của bạn.",
+         "Chúng tôi không yêu cầu đăng ký tài khoản hay đăng nhập mạng xã hội.",
+         "Chúng tôi không truy cập thư viện ảnh của bạn ngoài những ảnh cụ thể bạn chọn tải lên hoặc lưu.",
+         "Chúng tôi không bán dữ liệu cá nhân của bạn."]}
+  ]}},
+
+  {id:"use", n:4, en:{t:"How We Use Your Information", b:[
+    {p:"We use the information described above to:"},
+    {ul:["Provide the core features: restoring, colorizing, upscaling, and enhancing your photos.",
+         "Store and display your edit **History** and allow downloads.",
+         "Maintain your anonymous session and authenticate your requests.",
+         "Enforce fair-use and generation limits and prevent abuse, fraud, and security threats.",
+         "Review reports and improve the quality and safety of the service.",
+         "Diagnose technical problems and maintain reliability."]}
+  ]}, vi:{t:"Cách chúng tôi dùng thông tin", b:[
+    {p:"Chúng tôi dùng thông tin nêu trên để:"},
+    {ul:["Cung cấp tính năng cốt lõi: phục chế, tô màu, upscale và nâng cao ảnh của bạn.",
+         "Lưu và hiển thị **Lịch sử** chỉnh sửa và cho phép tải về.",
+         "Duy trì phiên ẩn danh và xác thực yêu cầu của bạn.",
+         "Thực thi giới hạn sử dụng hợp lý và ngăn lạm dụng, gian lận, đe dọa bảo mật.",
+         "Xem xét báo cáo và cải thiện chất lượng, an toàn của dịch vụ.",
+         "Chẩn đoán sự cố kỹ thuật và duy trì độ tin cậy."]}
+  ]}},
+
+  {id:"perms", n:5, en:{t:"Permissions We Request", b:[
+    {p:"The App may ask for the following device permissions. You can grant or deny them, and you can change your choice later in your device Settings:"},
+    {ul:["**Photos / Storage** — to let you pick a photo to edit and to save a result to your photo library or downloads folder."]},
+    {p:"If you deny a required permission, some features (such as saving an image) may not work."}
+  ]}, vi:{t:"Quyền chúng tôi yêu cầu", b:[
+    {p:"Ứng dụng có thể yêu cầu các quyền thiết bị sau. Bạn có thể cấp hoặc từ chối, và thay đổi lựa chọn sau trong Cài đặt thiết bị:"},
+    {ul:["**Ảnh / Bộ nhớ** — để bạn chọn ảnh chỉnh sửa và lưu kết quả vào thư viện ảnh hoặc thư mục tải về."]},
+    {p:"Nếu bạn từ chối một quyền bắt buộc, một số tính năng (như lưu ảnh) có thể không hoạt động."}
+  ]}},
+
+  {id:"storage", n:6, en:{t:"How Your Information Is Stored", b:[
+    {ul:["**On your device:** your session tokens are kept in secure, encrypted storage (iOS Keychain / Android Keystore-backed storage). App preferences are kept in standard local storage.",
+         "**On our servers:** uploaded photos, generated results, and related metadata are stored to provide History and download features."]},
+    {p:"All communication between the App and our servers uses encrypted connections (HTTPS)."}
+  ]}, vi:{t:"Cách lưu trữ thông tin của bạn", b:[
+    {ul:["**Trên thiết bị:** token phiên của bạn được lưu trong bộ nhớ an toàn, được mã hóa (iOS Keychain / bộ nhớ dựa trên Android Keystore). Tùy chọn ứng dụng được lưu trong bộ nhớ cục bộ tiêu chuẩn.",
+         "**Trên máy chủ:** ảnh tải lên, kết quả tạo ra và siêu dữ liệu liên quan được lưu để cung cấp tính năng Lịch sử và tải về."]},
+    {p:"Mọi liên lạc giữa Ứng dụng và máy chủ dùng kết nối được mã hóa (HTTPS)."}
+  ]}},
+
+  {id:"sharing", n:7, en:{t:"Data Sharing and Third Parties", b:[
+    {p:"We share data only to the limited extent needed to run the service:"},
+    {ul:["**Cloud infrastructure and storage providers** that host our servers and store images on our behalf.",
+         "**AI processing services** used to generate restored, colorized, or enhanced results."]},
+    {p:"These providers act on our instructions and are bound to protect your data. We do **not** share your photos or identifiers with advertisers or data brokers."},
+    {p:"We may disclose information if required by law, regulation, or valid legal process, or to protect the rights, safety, and security of our users and the service."}
+  ]}, vi:{t:"Chia sẻ dữ liệu và bên thứ ba", b:[
+    {p:"Chúng tôi chỉ chia sẻ dữ liệu ở mức giới hạn cần để vận hành dịch vụ:"},
+    {ul:["**Nhà cung cấp hạ tầng đám mây và lưu trữ** lưu trữ máy chủ và ảnh thay mặt chúng tôi.",
+         "**Dịch vụ xử lý AI** dùng để tạo kết quả phục chế, tô màu hoặc nâng cao."]},
+    {p:"Các nhà cung cấp này hành động theo chỉ dẫn của chúng tôi và có nghĩa vụ bảo vệ dữ liệu của bạn. Chúng tôi **không** chia sẻ ảnh hay mã định danh của bạn với nhà quảng cáo hay nhà môi giới dữ liệu."},
+    {p:"Chúng tôi có thể tiết lộ thông tin nếu pháp luật, quy định hoặc quy trình pháp lý hợp lệ yêu cầu, hoặc để bảo vệ quyền, an toàn và an ninh của người dùng và dịch vụ."}
+  ]}},
+
+  {id:"retention", n:8, en:{t:"Data Retention", b:[
+    {ul:["**Photos and results** are retained so they remain available in your History. When you delete a result in the App, we remove it from your History.",
+         "**Reports** are retained as long as needed for safety review and record-keeping.",
+         "**Session identifiers and logs** are retained only as long as necessary for the purposes described in this Policy."]},
+    {p:"You may contact us at any time to request deletion of data associated with your session."}
+  ]}, vi:{t:"Lưu giữ dữ liệu", b:[
+    {ul:["**Ảnh và kết quả** được lưu giữ để vẫn có trong Lịch sử của bạn. Khi bạn xóa một kết quả trong Ứng dụng, chúng tôi gỡ nó khỏi Lịch sử.",
+         "**Báo cáo** được lưu giữ trong thời gian cần thiết để rà soát an toàn và lưu hồ sơ.",
+         "**Mã định danh phiên và nhật ký** chỉ được lưu giữ trong thời gian cần thiết cho các mục đích nêu trong Chính sách này."]},
+    {p:"Bạn có thể liên hệ chúng tôi bất cứ lúc nào để yêu cầu xóa dữ liệu gắn với phiên của bạn."}
+  ]}},
+
+  {id:"children", n:9, en:{t:"Children's Privacy", b:[
+    {p:"Revima is not directed to children under the age of 13 (or the minimum age required in your country). We do not knowingly collect data from children. If you believe a child has provided us data, please contact us so we can remove it."}
+  ]}, vi:{t:"Quyền riêng tư của trẻ em", b:[
+    {p:"Revima không hướng đến trẻ em dưới 13 tuổi (hoặc độ tuổi tối thiểu theo quy định ở quốc gia của bạn). Chúng tôi không cố ý thu thập dữ liệu từ trẻ em. Nếu bạn cho rằng một trẻ em đã cung cấp dữ liệu cho chúng tôi, vui lòng liên hệ để chúng tôi gỡ bỏ."}
+  ]}},
+
+  {id:"rights", n:10, en:{t:"Your Rights", b:[
+    {p:"Depending on where you live, you may have rights to access, correct, or delete your data, or to object to or restrict certain processing. Because we operate on an anonymous-session basis, please include your device session reference where possible so we can locate your data. To exercise any right, contact us at **peakapp.general@gmail.com**."}
+  ]}, vi:{t:"Quyền của bạn", b:[
+    {p:"Tùy nơi bạn sinh sống, bạn có thể có quyền truy cập, chỉnh sửa hoặc xóa dữ liệu, hoặc phản đối hay hạn chế một số hoạt động xử lý. Vì chúng tôi vận hành theo cơ chế phiên ẩn danh, vui lòng kèm tham chiếu phiên thiết bị của bạn nếu có thể để chúng tôi xác định dữ liệu. Để thực hiện bất kỳ quyền nào, liên hệ **peakapp.general@gmail.com**."}
+  ]}},
+
+  {id:"intl", n:11, en:{t:"International Transfers", b:[
+    {p:"Your information may be processed and stored on servers located outside your country of residence. Where we transfer data internationally, we take steps to ensure it remains protected in line with this Policy."}
+  ]}, vi:{t:"Chuyển dữ liệu quốc tế", b:[
+    {p:"Thông tin của bạn có thể được xử lý và lưu trữ trên máy chủ đặt ngoài quốc gia bạn cư trú. Khi chuyển dữ liệu ra quốc tế, chúng tôi thực hiện các bước để đảm bảo dữ liệu vẫn được bảo vệ theo Chính sách này."}
+  ]}},
+
+  {id:"changes", n:12, en:{t:"Changes to This Policy", b:[
+    {p:'We may update this Privacy Policy from time to time. When we do, we will revise the "Last updated" date above. Material changes may be communicated within the App. Your continued use of the App after an update means you accept the revised Policy.'}
+  ]}, vi:{t:"Thay đổi Chính sách này", b:[
+    {p:'Chúng tôi có thể cập nhật Chính sách Bảo mật này theo thời gian. Khi đó, chúng tôi sẽ chỉnh ngày "Cập nhật lần cuối" ở trên. Thay đổi quan trọng có thể được thông báo trong Ứng dụng. Việc bạn tiếp tục dùng Ứng dụng sau khi cập nhật đồng nghĩa bạn chấp nhận Chính sách đã sửa đổi.'}
+  ]}},
+
+  {id:"contact", n:13, en:{t:"Contact Us", b:[
+    {p:"For any privacy questions or requests:"},
+    {contact:{who:"Revima", email:"peakapp.general@gmail.com"}}
+  ]}, vi:{t:"Liên hệ", b:[
+    {p:"Cho mọi câu hỏi hoặc yêu cầu về bảo mật:"},
+    {contact:{who:"Revima", email:"peakapp.general@gmail.com"}}
+  ]}}
+];
+
+/* ---------- render engine ---------- */
+function inl(s){
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
+    .replace(/`(.+?)`/g,"<code>$1</code>")
+    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
+}
+function block(bk){
+  if(bk.p) return "<p>"+inl(bk.p)+"</p>";
+  if(bk.h3) return "<h3>"+inl(bk.h3)+"</h3>";
+  if(bk.ul) return "<ul>"+bk.ul.map(li=>"<li>"+inl(li)+"</li>").join("")+"</ul>";
+  if(bk.note) return '<div class="note">'+inl(bk.note)+"</div>";
+  if(bk.contact) return '<div class="contact-card"><div class="lbl">Email</div><div class="who">'+bk.contact.who+'</div><a href="mailto:'+bk.contact.email+'">'+bk.contact.email+"</a></div>";
+  return "";
+}
+function render(lang){
+  const main=document.getElementById("content");
+  const toc=document.getElementById("toc");
+  main.innerHTML=""; toc.innerHTML="";
+  SECTIONS.forEach(s=>{
+    const c=s[lang], sec=document.createElement("section");
+    sec.className="sec"; sec.id=s.id; sec.setAttribute("data-od-id",s.id);
+    const num=s.n?'<span class="n">'+String(s.n).padStart(2,"0")+"</span>":"";
+    sec.innerHTML="<h2>"+num+"<span>"+inl(c.t)+"</span></h2>"+c.b.map(block).join("");
+    main.appendChild(sec);
+    if(s.n){
+      const li=document.createElement("li");
+      li.innerHTML='<a href="#'+s.id+'">'+inl(c.t)+"</a>";
+      toc.appendChild(li);
+    }
+  });
+  // ui strings
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n"); if(UI[lang][k]!=null) el.textContent=UI[lang][k];
+  });
+  document.documentElement.lang=UI[lang].htmlLang;
+  document.title=UI[lang].title+" — Revima";
+  setupSpy();
+}
+let spyEls=[];
+function setupSpy(){
+  spyEls=[...document.querySelectorAll("main section.sec")];
+}
+function onScroll(){
+  if(!spyEls.length) return;
+  let cur=spyEls[0]?.id;
+  for(const el of spyEls){ if(el.getBoundingClientRect().top<=110) cur=el.id; }
+  document.querySelectorAll("#toc a").forEach(a=>{
+    a.classList.toggle("active", a.getAttribute("href")==="#"+cur);
+  });
+}
+/* ---------- lang control ---------- */
+function setLang(lang){
+  try{localStorage.setItem("revima_lang",lang)}catch(e){}
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===lang?"true":"false"));
+  render(lang); onScroll();
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+window.addEventListener("scroll",onScroll,{passive:true});
+let initLang="en";
+try{const s=localStorage.getItem("revima_lang"); if(s==="vi"||s==="en") initLang=s;}catch(e){}
+setLang(initLang);
+</script>
+</body>
+</html>
